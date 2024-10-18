@@ -1,0 +1,38 @@
+-- Create the Laboratories table
+CREATE TABLE IF NOT EXISTS Laboratories (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL
+);
+
+-- Create the Departments table
+CREATE TABLE IF NOT EXISTS Departments (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL
+);
+
+-- Create the Activities table
+CREATE TABLE IF NOT EXISTS Activities (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    lab_id INTEGER,
+    department_id INTEGER,
+    activity_type TEXT NOT NULL,
+    completion_rate REAL NOT NULL,
+    FOREIGN KEY (lab_id) REFERENCES Laboratories(id),
+    FOREIGN KEY (department_id) REFERENCES Departments(id)
+);
+
+-- Insert sample data into Laboratories
+INSERT INTO Laboratories (name) VALUES ('Chemistry Lab');
+INSERT INTO Laboratories (name) VALUES ('Physics Lab');
+INSERT INTO Laboratories (name) VALUES ('Biology Lab');
+
+-- Insert sample data into Departments
+INSERT INTO Departments (name) VALUES ('Chemistry Department');
+INSERT INTO Departments (name) VALUES ('Physics Department');
+INSERT INTO Departments (name) VALUES ('Biology Department');
+
+-- Insert sample data into Activities
+INSERT INTO Activities (lab_id, department_id, activity_type, completion_rate) VALUES (1, 1, 'Experiment A', 0.85);
+INSERT INTO Activities (lab_id, department_id, activity_type, completion_rate) VALUES (1, 2, 'Experiment B', 0.90);
+INSERT INTO Activities (lab_id, department_id, activity_type, completion_rate) VALUES (2, 1, 'Experiment C', 0.75);
+INSERT INTO Activities (lab_id, department_id, activity_type, completion_rate) VALUES (3, 3, 'Experiment D', 0.95);
